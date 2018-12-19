@@ -3,7 +3,7 @@ boolean win_col;
 boolean win_dia1;
 boolean win_dia2;
 
-void check_win(int[][] tab)
+int check_win(int[][] tab)
 {
   for(int i = 0; i < _size; i++)
   {
@@ -14,8 +14,8 @@ void check_win(int[][] tab)
       if(tab[j][i] != tab[j+1][i] || tab[j][i] == 0) win_row = false;
       if(tab[i][j] != tab[i][j+1] || tab[i][j] == 0) win_col = false;
     }
-    if(win_row) win = tab[0][i];
-    if(win_col) win = tab[i][0];
+    if(win_row) return(tab[0][i]);
+    if(win_col) return(tab[i][0]);
   }
   
   win_dia1 = true;
@@ -25,13 +25,10 @@ void check_win(int[][] tab)
     if(tab[i][i] != tab[i+1][i+1] || tab[i][i] == 0) win_dia1 = false;
     if(tab[_size-i-1][i] != tab[_size-i-2][i+1] || tab[_size-i-1][i] == 0) win_dia2 = false;
   }
-  if(win_dia1) win = tab[0][0];
-  if(win_dia2) win = tab[_size-1][0];
-   
-  if(win == 1) text("Lines win!", 142, 495);
-  else if(win == 2) text("Circles win!", 130, 495);
-  else if(counter == _size * _size) win = 3;
-  if(win != 0) counter = 0;
+  if(win_dia1) return(tab[0][0]);
+  if(win_dia2) return(tab[_size-1][0]);
+    
+  return 0;
 }
 
 void reset()

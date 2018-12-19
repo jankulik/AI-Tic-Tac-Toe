@@ -55,6 +55,49 @@ void ai()
 
 void make_move(int[][] tab, int decision)
 {
+  counter++;
+  int[][] sub_board = tab;
+  int sub_winX = 0;
+  int sub_winO = 0;
+  
+  for(int i = 0; i < 3; i++)
+  {
+    for(int j = 0; j < 3; j++)
+    {
+      if(sub_board[i][j] == 0)
+      {
+        sub_board[i][j] = 2;
+        sub_winO = check_win(sub_board);
+        sub_board[i][j] = 0;
+      }
+      
+      if(sub_winO == 2 && move)
+      {
+        tab[i][j] = 2;
+        move = false;
+      }
+    }
+  }
+  
+  for(int i = 0; i < 3; i++)
+  {
+    for(int j = 0; j < 3; j++)
+    {
+      if(sub_board[i][j] == 0)
+      {
+        sub_board[i][j] = 1;
+        sub_winX = check_win(sub_board);
+        sub_board[i][j] = 0;
+      }
+      
+      if(sub_winX == 1 && move)
+      {
+        tab[i][j] = 2;
+        move = false;
+      }
+    }
+  }
+  
   int k = 0;     
   for(int i = 0; i < 3; i++)
   {

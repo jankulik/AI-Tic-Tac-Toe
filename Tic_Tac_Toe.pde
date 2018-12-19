@@ -1,7 +1,6 @@
 /*
 
 simple AI that learns how to play Tic Tac Toe
-AI increases the probability of victory with a random-shooting opponent from 33% to 66% (as a circle)
 
 created in 2018
 by Jan Kulik
@@ -50,7 +49,12 @@ void draw()
     save_data();
   }
   
-  check_win(board);
+  win = check_win(board);
+  
+  if(win == 1) text("Lines win!", 142, 495);
+  else if(win == 2) text("Circles win!", 130, 495);
+  else if(counter == _size * _size) win = 3;
+  if(win != 0) counter = 0;
   
   if(!learn) ai();
 }
@@ -67,6 +71,7 @@ void mousePressed()
       move = true;
       if(!learn)
       {
+        counter++;
         counterX++;
         difference_min = 0;
         difference_prev = 10;
