@@ -1,49 +1,50 @@
 void field(int x, int y)
 {
-  rect(x,y,5,150);
-  rect(x,y,150,5);
-  rect(x+145,y,5,150);
-  rect(x,y+145,150,5);
+  rect(x,y,10,300);
+  rect(x,y,300,10);
+  rect(x+290,y,10,300);
+  rect(x,y+290,300,10);
 }
 
 void drawX(int x, int y)
 {
   rectMode(CENTER);
-  translate(x*145, y*145);
+  translate(x*290, y*290);
   rotate(PI/4.0);
-  rect(105,0, 130, 3);
+  rect(210,0, 260, 6);
   rotate(-(PI/4.0));  
-  translate(150,0);
+  translate(300,0);
   rotate(0.75*PI);
-  rect(105,0, 130, 3);
+  rect(210, 0, 260, 6);
   rotate(-(0.75*PI));
-  translate(-(x*145)-150, -(y*145));
+  translate(-(x*290)-300, -(y*290));
   rectMode(CORNER);
 }
 
 void drawO(int x, int y)
 {
-  translate(x*145, y*145);
-  ellipse(74,74,110,110);
+  translate(x*290, y*290);
+  ellipse(148,148,220,220);
   fill(255);
-  ellipse(74,74,104,104);
+  ellipse(148,148,208,208);
   fill(50);
-  translate(-(x*145), -(y*145));
+  translate(-(x*290), -(y*290));
 }
 
 void draw_board()
 {
+  
   fill(255);
-  rect(110, 460, 220, 50);
-  rect(110, 530, 220, 50);
+  rect(190, 950, 500, 120);
+  rect(190, 1100, 500, 120);
   fill(50);
-  text("Reset", 178, 565);
+  text("Reset", 345, 1185);
   
   for(int i = 0; i < _size; i++)
   {
     for(int j = 0; j < _size; j++)
     {
-      field(i*145, j*145);
+      field(i*290, j*290);
       if(board[i][j] == 1) drawX(i, j);
       else if(board[i][j] == 2) drawO(i, j);
     }

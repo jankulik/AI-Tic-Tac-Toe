@@ -24,7 +24,7 @@ void save_data()
     reset();
   }
   
-  if(generation == 10000)
+  if(generation == 100)
   {
     output.flush();
     output.close();
